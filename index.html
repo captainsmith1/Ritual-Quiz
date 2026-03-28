@@ -310,13 +310,13 @@
 <body>
     <div class="container">
         <div class="header">
-            <div class="logo">🧠 Ritual QuizMaster</div>
-            <div class="subtitle">Test Your Ritual Knowledge</div>
+            <div class="logo">🧠 QuizMaster</div>
+            <div class="subtitle">Test Your Knowledge</div>
         </div>
 
         <!-- Start Screen -->
         <div id="start-screen" class="quiz-section active start-screen">
-            <h2>Welcome to Ritual QuizMaster!</h2>
+            <h2>Welcome to QuizMaster!</h2>
             <p>Test your knowledge with our interactive quiz. You'll get immediate feedback on each question and see your final score at the end.</p>
             <div class="buttons">
                 <button class="btn" onclick="startQuiz()">Start Quiz</button>
@@ -379,225 +379,179 @@
     </div>
 
     <script>
-        <script>
-    // Quiz data (Ritual MCQs)
-    const quizData = [
-        {
-            question: "What is Ritual primarily described as?",
-            options: [
-                "A centralized AI platform",
-                "A gaming blockchain",
-                "An open AI infrastructure network",
-                "A social media protocol"
-            ],
-            correct: 2
-        },
-        {
-            question: "What is Ritual Chain?",
-            options: [
-                "A Layer 2 scaling solution",
-                "A sovereign Layer 1 blockchain",
-                "A database system",
-                "A cloud provider"
-            ],
-            correct: 1
-        },
-        {
-            question: "What is Infernet?",
-            options: [
-                "A smart contract language",
-                "A decentralized oracle network",
-                "A crypto wallet",
-                "A mining algorithm"
-            ],
-            correct: 1
-        },
-        {
-            question: "What is the main goal of Ritual?",
-            options: [
-                "Increase blockchain speed only",
-                "Replace Ethereum",
-                "Enable open and accessible AI infrastructure",
-                "Build gaming NFTs"
-            ],
-            correct: 2
-        },
-        {
-            question: "What does the Ritual Foundation support?",
-            options: [
-                "Only marketing campaigns",
-                "Development and growth of Ritual ecosystem",
-                "Cryptocurrency trading",
-                "Social networking"
-            ],
-            correct: 1
-        },
-        {
-            question: "What makes Ritual different from traditional blockchains?",
-            options: [
-                "It removes smart contracts",
-                "It focuses only on speed",
-                "It enables heterogeneous compute like AI and ZK",
-                "It only supports Bitcoin"
-            ],
-            correct: 2
-        },
-        {
-            question: "What is the role of Infernet in Ritual Chain?",
-            options: [
-                "It replaces the blockchain",
-                "It acts as a mining pool",
-                "It enables compute delegation and AI access",
-                "It stores NFTs"
-            ],
-            correct: 2
-        },
-        {
-            question: "What does 'heterogeneous compute' refer to in Ritual?",
-            options: [
-                "Only GPU-based computing",
-                "Different types of computations like AI, ZK, and TEE",
-                "Only financial transactions",
-                "Cloud storage"
-            ],
-            correct: 1
-        },
-        {
-            question: "What is a key feature of scheduled transactions in Ritual?",
-            options: [
-                "They require manual triggering",
-                "They only work off-chain",
-                "They allow recurring and conditional execution",
-                "They are limited to payments"
-            ],
-            correct: 2
-        },
-        {
-            question: "What is the purpose of Ritual VM?",
-            options: [
-                "Store cryptocurrency",
-                "Enable AI integration into decentralized apps",
-                "Replace smart contracts",
-                "Mine tokens"
-            ],
-            correct: 1
-        }
-    ];
-
-    let currentQuestion = 0;
-    let score = 0;
-    let selectedOption = -1;
-    let quizCompleted = false;
-
-    function startQuiz() {
-        document.getElementById('start-screen').classList.remove('active');
-        document.getElementById('quiz-screen').classList.add('active');
-        document.getElementById('total-questions').textContent = quizData.length;
-        loadQuestion();
-    }
-
-    function loadQuestion() {
-        if (currentQuestion >= quizData.length) {
-            showResults();
-            return;
-        }
-
-        const question = quizData[currentQuestion];
-        document.getElementById('current-question').textContent = currentQuestion + 1;
-        document.getElementById('question-text').textContent = question.question;
-        
-        const optionsContainer = document.getElementById('options-container');
-        optionsContainer.innerHTML = '';
-        
-        question.options.forEach((option, index) => {
-            const optionElement = document.createElement('div');
-            optionElement.className = 'option';
-            optionElement.textContent = option;
-            optionElement.onclick = () => selectOption(index);
-            optionsContainer.appendChild(optionElement);
-        });
-
-        const progress = ((currentQuestion) / quizData.length) * 100;
-        document.getElementById('progress-fill').style.width = progress + '%';
-
-        selectedOption = -1;
-        document.getElementById('next-btn').disabled = true;
-        document.getElementById('feedback').style.display = 'none';
-        document.getElementById('feedback').className = 'feedback';
-    }
-
-    function selectOption(index) {
-        if (selectedOption !== -1) return;
-
-        selectedOption = index;
-        const options = document.querySelectorAll('.option');
-        const question = quizData[currentQuestion];
-        
-        options.forEach((option, i) => {
-            if (i === question.correct) {
-                option.classList.add('correct');
-            } else if (i === selectedOption && i !== question.correct) {
-                option.classList.add('incorrect');
+        // Quiz data
+        const quizData = [
+            {
+                question: "What is Ritual primarily described as?",
+                options: ["A centralized AI platform", "A gaming blockchain", "An open AI infrastructure network", "A social media protocol"],
+                correct: 2
+            },
+            {
+                question: "What is Ritual Chain?",
+                options: ["A Layer 2 scaling solution", "A sovereign Layer 1 blockchain", "A database system", "A cloud provider"],
+                correct: 1
+            },
+            {
+                question: "What is Infernet?",
+                options: ["A smart contract language", "A decentralized oracle network", "A crypto wallet", "A mining algorithm"],
+                correct: 1
+            },
+            {
+                question: "What is the main goal of Ritual?",
+                options: ["Increase blockchain speed only", "Replace Ethereum", "Enable open and accessible AI infrastructure", "Build gaming NFTs"],
+                correct: 2
+            },
+            {
+                question: "What does the Ritual Foundation support?",
+                options: ["Only marketing campaigns", "Development and growth of Ritual ecosystem", "Cryptocurrency trading", "Social networking"],
+                correct: 1
+            },
+            {
+                question: "What makes Ritual different from traditional blockchains?",
+                options: ["It removes smart contracts", "It focuses only on speed", "It enables heterogeneous compute like AI and ZK", "It only supports Bitcoin"],
+                correct: 2
+            },
+            {
+                question: "What is the role of Infernet in Ritual Chain??",
+                options: ["It replaces the blockchain", "It acts as a mining pool", "It enables compute delegation and AI access", "It stores NFTs"],
+                correct: 2
+            },
+            {
+                question: "What does “heterogeneous compute” refer to in Ritual?",
+                options: ["Only GPU-based computing", "Different types of computations like AI, ZK, and TEE", "Only financial transactions", "Cloud storage"],
+                correct: 1
+            },
+            {
+                question: "What is a key feature of scheduled transactions in Ritual?",
+                options: ["They require manual triggering", "They only work off-chain", "They allow recurring and conditional execution", "They are limited to payments"],
+                correct: 2
+            },
+            {
+                question: "What is the purpose of Ritual VM?",
+                options: ["Store cryptocurrency", "Enable AI integration into decentralized apps", "Replace smart contracts", "Mine tokens"],
+                correct: 1
             }
-            option.style.pointerEvents = 'none';
-        });
+        ];
 
-        const feedback = document.getElementById('feedback');
-        if (selectedOption === question.correct) {
-            score++;
-            feedback.textContent = '🎉 Correct! Well done!';
-            feedback.className = 'feedback correct';
-        } else {
-            feedback.textContent = `❌ Incorrect. The correct answer is: ${question.options[question.correct]}`;
-            feedback.className = 'feedback incorrect';
+        let currentQuestion = 0;
+        let score = 0;
+        let selectedOption = -1;
+        let quizCompleted = false;
+
+        function startQuiz() {
+            document.getElementById('start-screen').classList.remove('active');
+            document.getElementById('quiz-screen').classList.add('active');
+            document.getElementById('total-questions').textContent = quizData.length;
+            loadQuestion();
         }
-        
-        feedback.style.display = 'block';
-        document.getElementById('next-btn').disabled = false;
-    }
 
-    function nextQuestion() {
-        currentQuestion++;
-        setTimeout(loadQuestion, 300);
-    }
+        function loadQuestion() {
+            if (currentQuestion >= quizData.length) {
+                showResults();
+                return;
+            }
 
-    function showResults() {
-        document.getElementById('quiz-screen').classList.remove('active');
-        document.getElementById('results-screen').classList.add('active');
-        
-        const percentage = Math.round((score / quizData.length) * 100);
-        const scoreCircle = document.getElementById('score-circle');
-        
-        document.getElementById('score-percentage').textContent = percentage + '%';
-        document.getElementById('correct-count').textContent = score;
-        document.getElementById('incorrect-count').textContent = quizData.length - score;
-        document.getElementById('total-count').textContent = quizData.length;
-        
-        let message = '';
-        if (percentage >= 80) {
-            scoreCircle.className = 'score-circle excellent';
-            message = '🏆 Excellent! You\'re a Ritual expert!';
-        } else if (percentage >= 60) {
-            scoreCircle.className = 'score-circle good';
-            message = '👏 Good job! Strong understanding of Ritual!';
-        } else if (percentage >= 40) {
-            scoreCircle.className = 'score-circle average';
-            message = '👍 Not bad! Keep learning Ritual!';
-        } else {
-            scoreCircle.className = 'score-circle poor';
-            message = '💪 Keep exploring Ritual docs and try again!';
+            const question = quizData[currentQuestion];
+            document.getElementById('current-question').textContent = currentQuestion + 1;
+            document.getElementById('question-text').textContent = question.question;
+            
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+            
+            question.options.forEach((option, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.className = 'option';
+                optionElement.textContent = option;
+                optionElement.onclick = () => selectOption(index);
+                optionsContainer.appendChild(optionElement);
+            });
+
+            // Update progress bar
+            const progress = ((currentQuestion) / quizData.length) * 100;
+            document.getElementById('progress-fill').style.width = progress + '%';
+
+            // Reset UI
+            selectedOption = -1;
+            document.getElementById('next-btn').disabled = true;
+            document.getElementById('feedback').style.display = 'none';
+            document.getElementById('feedback').className = 'feedback';
         }
-        
-        document.getElementById('results-message').textContent = message;
-    }
 
-    function restartQuiz() {
-        currentQuestion = 0;
-        score = 0;
-        selectedOption = -1;
-        document.getElementById('results-screen').classList.remove('active');
-        document.getElementById('start-screen').classList.add('active');
-    }
-</script>
+        function selectOption(index) {
+            if (selectedOption !== -1) return; // Prevent multiple selections
+
+            selectedOption = index;
+            const options = document.querySelectorAll('.option');
+            const question = quizData[currentQuestion];
+            
+            // Show correct/incorrect feedback
+            options.forEach((option, i) => {
+                if (i === question.correct) {
+                    option.classList.add('correct');
+                } else if (i === selectedOption && i !== question.correct) {
+                    option.classList.add('incorrect');
+                }
+                option.style.pointerEvents = 'none';
+            });
+
+            // Update score and show feedback
+            const feedback = document.getElementById('feedback');
+            if (selectedOption === question.correct) {
+                score++;
+                feedback.textContent = '🎉 Correct! Well done!';
+                feedback.className = 'feedback correct';
+            } else {
+                feedback.textContent = `❌ Incorrect. The correct answer is: ${question.options[question.correct]}`;
+                feedback.className = 'feedback incorrect';
+            }
+            
+            feedback.style.display = 'block';
+            document.getElementById('next-btn').disabled = false;
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            setTimeout(loadQuestion, 300); // Small delay for smooth transition
+        }
+
+        function showResults() {
+            document.getElementById('quiz-screen').classList.remove('active');
+            document.getElementById('results-screen').classList.add('active');
+            
+            const percentage = Math.round((score / quizData.length) * 100);
+            const scoreCircle = document.getElementById('score-circle');
+            
+            document.getElementById('score-percentage').textContent = percentage + '%';
+            document.getElementById('correct-count').textContent = score;
+            document.getElementById('incorrect-count').textContent = quizData.length - score;
+            document.getElementById('total-count').textContent = quizData.length;
+            
+            // Set score circle color and message based on performance
+            let message = '';
+            if (percentage >= 80) {
+                scoreCircle.className = 'score-circle excellent';
+                message = '🏆 Excellent! You\'re a quiz master!';
+            } else if (percentage >= 60) {
+                scoreCircle.className = 'score-circle good';
+                message = '👏 Good job! You did well!';
+            } else if (percentage >= 40) {
+                scoreCircle.className = 'score-circle average';
+                message = '👍 Not bad! Keep practicing!';
+            } else {
+                scoreCircle.className = 'score-circle poor';
+                message = '💪 Don\'t give up! Try again!';
+            }
+            
+            document.getElementById('results-message').textContent = message;
+        }
+
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            selectedOption = -1;
+            document.getElementById('results-screen').classList.remove('active');
+            document.getElementById('start-screen').classList.add('active');
+        }
+    </script>
 </body>
 </html>
